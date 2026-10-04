@@ -410,6 +410,11 @@ h1 {
   grid-column: 1 / -1;
 }
 
+.split-panel > .section-heading h2 {
+  /* Align the visible first letter, using its measured font side bearing. */
+  margin-left: var(--heading-optical-offset, 0px);
+}
+
 .split-panel .text-link {
   margin-left: calc(var(--thumbnail-width) + var(--split-gap));
 }
@@ -481,6 +486,12 @@ h3 {
   /* Keep the frame inside the image so it cannot extend into the margins. */
   outline: 1px solid var(--line);
   outline-offset: -1px;
+  cursor: zoom-in;
+}
+
+.item-thumbnail:focus-visible {
+  outline: 0.2rem solid var(--accent);
+  outline-offset: 0.15rem;
 }
 
 .item-thumbnail img {
@@ -496,6 +507,73 @@ h3 {
 
 :root[data-theme="dark"] .item-thumbnail .thumbnail-dark {
   display: block;
+}
+
+.image-lightbox {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  height: 100dvh;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: 3.5rem clamp(0.75rem, 3vw, 2.5rem);
+  border: 0;
+  background: transparent;
+  overflow: hidden;
+}
+
+.image-lightbox[open] {
+  display: grid;
+  place-items: center;
+}
+
+.image-lightbox::backdrop {
+  background: rgb(0 0 0 / 72%);
+}
+
+.image-lightbox-image {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: calc(100vh - 7rem);
+  max-height: calc(100dvh - 7rem);
+  object-fit: contain;
+  box-shadow: 0 0.75rem 3rem rgb(0 0 0 / 24%);
+}
+
+.image-lightbox-close {
+  position: fixed;
+  top: max(0.65rem, env(safe-area-inset-top));
+  right: max(0.65rem, env(safe-area-inset-right));
+  display: grid;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
+  border: 1px solid rgb(255 255 255 / 28%);
+  border-radius: 50%;
+  place-items: center;
+  background: rgb(0 0 0 / 30%);
+  color: #fff;
+  cursor: pointer;
+}
+
+.image-lightbox-close:hover {
+  background: rgb(0 0 0 / 60%);
+}
+
+.image-lightbox-close:focus-visible {
+  outline-color: #fff;
+}
+
+.image-lightbox-close svg {
+  width: 1.2rem;
+  height: 1.2rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
 }
 
 .preview-list li:first-child {
@@ -960,6 +1038,7 @@ h3 {
   .profile-links,
   .pronunciation-play,
   .publication-toggle,
+  .image-lightbox,
   .skip-link {
     display: none;
   }

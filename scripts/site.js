@@ -1,5 +1,27 @@
 (() => {
   const SLOW_PRONUNCIATION_RATE = 0.7;
+  const sectionHeadings = document.querySelectorAll(".split-panel > .section-heading h2");
+
+  if (sectionHeadings.length) {
+    const textMetrics = document.createElement("canvas").getContext("2d");
+
+    const alignSectionHeadings = () => {
+      if (!textMetrics) return;
+
+      sectionHeadings.forEach((heading) => {
+        const style = getComputedStyle(heading);
+        textMetrics.font = `${style.fontStyle} ${style.fontWeight} ${style.fontSize} ${style.fontFamily}`;
+        const firstLetter = heading.textContent.trim().charAt(0);
+        const offset = textMetrics.measureText(firstLetter).actualBoundingBoxLeft;
+        heading.style.setProperty("--heading-optical-offset", `${Number.isFinite(offset) ? offset : 0}px`);
+      });
+    };
+
+    alignSectionHeadings();
+    document.fonts?.ready.then(alignSectionHeadings);
+    window.addEventListener("resize", alignSectionHeadings);
+  }
+
   const portrait = document.querySelector("[data-random-portrait]");
 
   if (portrait) {
