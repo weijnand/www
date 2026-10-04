@@ -1,2 +1,5 @@
 # Keep full-resolution portrait sources local.
 /assets/images/portraits/source/
+
+# Keep full-resolution thumbnail sources local.
+/assets/thumbnails/source/
