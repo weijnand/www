@@ -477,15 +477,13 @@ h3 {
 .item-thumbnail {
   display: block;
   width: 100%;
-  aspect-ratio: 5 / 4;
   min-width: 0;
   align-self: start;
   /* Align with the date capitals, allowing for the line's built-in leading. */
   margin-top: 0.3rem;
   overflow: hidden;
-  /* Keep the frame inside the image so it cannot extend into the margins. */
-  outline: 1px solid var(--line);
-  outline-offset: -1px;
+  /* Reserve space for the frame without covering the photo or the margins. */
+  border: 1px solid var(--line);
   cursor: zoom-in;
 }
 
@@ -496,7 +494,8 @@ h3 {
 
 .item-thumbnail img {
   width: 100%;
-  height: 100%;
+  height: auto;
+  aspect-ratio: 5 / 4;
   object-fit: cover;
 }
 
