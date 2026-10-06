@@ -1,5 +1,8 @@
 (() => {
   const storageKey = "wvw-theme";
+  const localThemeParameter = "wvw-theme";
+  const isLocalFile = window.location.protocol === "file:";
+  const localPageNames = new Set(["index.html", "news.html", "events.html", "visits.html"]);
   const systemTheme = window.matchMedia("(prefers-color-scheme: dark)");
   const root = document.documentElement;
   let preferredTheme = null;
@@ -12,6 +15,62 @@
   } catch {
     // The toggle still works if the browser disallows local storage.
   }
+
+  if (isLocalFile) {
+    // Browsers can isolate local storage for each file, so carry the choice
+    // explicitly when navigating between the site's local HTML pages.
+    const incomingTheme = new URL(window.location.href).searchParams.get(localThemeParameter);
+    if (validTheme(incomingTheme) || incomingTheme === "system") {
+      preferredTheme = validTheme(incomingTheme) ? incomingTheme : null;
+      try {
+        if (preferredTheme === null) localStorage.removeItem(storageKey);
+        else localStorage.setItem(storageKey, preferredTheme);
+      } catch {
+        // The URL handoff also works when local files cannot use storage.
+      }
+    }
+  }
+
+  const updateLocalPageLinks = () => {
+    if (!isLocalFile) return;
+
+    const currentUrl = new URL(window.location.href);
+    const currentDirectory = currentUrl.pathname.slice(0, currentUrl.pathname.lastIndexOf("/") + 1);
+    const localPreference = preferredTheme ?? "system";
+
+    document.querySelectorAll("a[href]").forEach((link) => {
+      const href = link.getAttribute("href");
+      if (!href || href.startsWith("#") || link.hasAttribute("download")) return;
+
+      let target;
+      try {
+        target = new URL(href, currentUrl);
+      } catch {
+        return;
+      }
+      const separator = target.pathname.lastIndexOf("/") + 1;
+      if (
+        target.protocol !== "file:"
+        || target.host !== currentUrl.host
+        || target.pathname.slice(0, separator) !== currentDirectory
+        || !localPageNames.has(target.pathname.slice(separator))
+        || target.pathname === currentUrl.pathname
+      ) return;
+
+      target.searchParams.set(localThemeParameter, localPreference);
+      link.href = target.href;
+    });
+
+    // Keep an incoming handoff current so reloading after a toggle retains it.
+    if (currentUrl.searchParams.has(localThemeParameter)) {
+      currentUrl.searchParams.set(localThemeParameter, localPreference);
+      try {
+        history.replaceState(history.state, "", currentUrl.href);
+      } catch {
+        // Some browsers restrict history changes for local files.
+      }
+    }
+  };
 
   const applyTheme = () => {
     const theme = preferredTheme ?? (systemTheme.matches ? "dark" : "light");
@@ -26,6 +85,8 @@
       toggle.setAttribute("aria-label", label);
       toggle.title = label;
     }
+
+    updateLocalPageLinks();
   };
 
   // This script runs before the stylesheet to avoid a flash of the wrong theme.

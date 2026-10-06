@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Public visits data checks</title>
+    <script src="../scripts/visits-data.js"></script>
+  </head>
+  <body>
+    <h1>Public visits data checks</h1>
+    <pre id="results"></pre>
+    <script>
+      (() => {
+        const original = {
+          version: 1, timezone: "Europe/Berlin", scope: "homepage", exclude_bots: true,
+          start_date: "2020-01-01", as_of: "2020-01-03", total_visits: 2.5,
+          coverage: {recorded_days: 2, expected_days: 3, missing_days: 1},
+          partial_dates: ["2020-01-01"], estimated: true,
+          daily: [{date: "2020-01-01", visits: 2.5}, {date: "2020-01-03", visits: 0}]
+        };
+        const results = [];
+        function check(name, edit, shouldPass) {
+          const data = JSON.parse(JSON.stringify(original));
+          edit(data);
+          let accepted = true;
+          try { window.WvwVisitsData.validate(data); } catch { accepted = false; }
+          results.push({name, passed: accepted === shouldPass});
+        }
+        check("sampled counts and missing dates are valid", () => {}, true);
+        check("private metadata is rejected", d => {d.account_id = "private";}, false);
+        check("extra row fields are rejected", d => {d.daily[0].site_tag = "private";}, false);
+        check("wrong scope is rejected", d => {d.scope = "all-pages";}, false);
+        check("bot-inclusive data is rejected", d => {d.exclude_bots = false;}, false);
+        check("incorrect total is rejected", d => {d.total_visits = 3;}, false);
+        check("incorrect coverage is rejected", d => {d.coverage.missing_days = 0;}, false);
+        check("duplicate dates are rejected", d => {d.daily[1].date = d.daily[0].date;}, false);
+        check("impossible dates are rejected", d => {d.daily[1].date = "2020-02-30";}, false);
+        check("negative counts are rejected", d => {d.daily[0].visits = -1;}, false);
+        check("infinity is rejected", d => {d.daily[0].visits = Infinity;}, false);
+        check("overflowed daily total is rejected", d => {
+          d.daily.forEach(day => {day.visits = 1e308;}); d.total_visits = 1e308;
+        }, false);
+        check("string counts are rejected", d => {d.daily[0].visits = "2.5";}, false);
+        check("unknown partial date is rejected", d => {d.partial_dates = ["2019-01-01"];}, false);
+        check("duplicate partial dates are rejected", d => {d.partial_dates.push("2020-01-01");}, false);
+        check("incorrect latest date is rejected", d => {d.as_of = "2020-01-02";}, false);
+        check("unfinished dates are rejected", d => {
+          const parts = Object.fromEntries(new Intl.DateTimeFormat("en-CA", {
+            timeZone: "Europe/Berlin", year: "numeric", month: "2-digit", day: "2-digit"
+          }).formatToParts(new Date()).map(({type, value}) => [type, value]));
+          const today = `${parts.year}-${parts.month}-${parts.day}`;
+          d.daily = [{date: today, visits: 0}];
+          d.start_date = d.as_of = today;
+          d.total_visits = 0;
+          d.partial_dates = [];
+          d.coverage = {recorded_days: 1, expected_days: 1, missing_days: 0};
+        }, false);
+        function empty(d) {
+          d.daily = []; d.start_date = d.as_of = d.total_visits = null;
+          d.partial_dates = []; d.estimated = false;
+          d.coverage = {recorded_days: 0, expected_days: 0, missing_days: 0};
+        }
+        check("empty archive means unavailable", empty, true);
+        check("empty archive cannot claim zero", d => {empty(d); d.total_visits = 0;}, false);
+        document.getElementById("results").textContent = JSON.stringify(results, null, 2);
+        document.documentElement.dataset.testsPassed = String(results.every(result => result.passed));
+        window.visitsDataTestResults = results;
+      })();
+    </script>
+  </body>
+</html>

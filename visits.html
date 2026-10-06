@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f4f1e9">
+    <meta name="description" content="Recorded visits to Wijnand van Woerkom’s researcher homepage.">
+    <title>Visits — Wijnand van Woerkom</title>
+    <link rel="icon" href="favicon.ico?v=1" sizes="16x16 32x32 48x48 64x64">
+    <link rel="icon" href="assets/icons/favicon.svg?v=13" type="image/svg+xml" sizes="any">
+    <link rel="icon" href="assets/icons/favicon-32.png?v=13" sizes="32x32" type="image/png">
+    <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png?v=13">
+    <script src="scripts/theme.js?v=3"></script>
+    <link rel="stylesheet" href="styles.css?v=32">
+    <link rel="stylesheet" href="styles/visits.css?v=1">
+    <script src="scripts/site.js?v=15" defer></script>
+    <script src="scripts/visits-data.js?v=1" defer></script>
+    <script src="scripts/visits-page.js?v=1" defer></script>
+    <!-- Cloudflare Web Analytics -->
+    <script
+      type="module"
+      src="https://static.cloudflareinsights.com/beacon.min.js"
+      data-cf-beacon='{"token":"e4d41b147d684d9581b0b6d84099897e"}'
+    ></script>
+    <!-- End Cloudflare Web Analytics -->
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="home-link" href="index.html">Home</a>
+        <nav aria-label="Primary navigation">
+          <a href="index.html#about">About</a>
+          <a href="news.html">News</a>
+          <a href="events.html">Events</a>
+          <a href="index.html#publications">Publications</a>
+          <a href="index.html#talks">Talks</a>
+        </nav>
+        <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch to dark mode" title="Switch to dark mode" hidden>
+          <svg class="theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M20.8 13.1A9 9 0 0 1 10.9 3.2a9 9 0 1 0 9.9 9.9Z"></path>
+          </svg>
+          <svg class="theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.93 4.93l1.42 1.42M17.65 17.65l1.42 1.42M4.93 19.07l1.42-1.42M17.65 6.35l1.42-1.42"></path>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <main class="listing-page visits-page" id="main-content">
+      <a class="back-link" href="index.html"><span aria-hidden="true">←</span> Back to homepage</a>
+      <header class="listing-intro">
+        <h1>Visits</h1>
+        <p>Recorded visits to this researcher homepage, day by day.</p>
+      </header>
+
+      <section class="visits-explorer" id="visits-explorer" aria-labelledby="visits-history-heading" aria-busy="true">
+        <div class="visits-chart-heading">
+          <h2 id="visits-history-heading">Visit history</h2>
+          <p class="visits-freshness" id="visits-freshness">Loading the published archive…</p>
+        </div>
+        <form id="visits-range-form" novalidate>
+          <fieldset class="visits-controls" disabled>
+            <legend class="visits-sr-only">Choose a date range</legend>
+            <div class="visits-presets" role="group" aria-label="Date range">
+              <button type="button" data-visits-range="1W" aria-label="Last week" aria-pressed="false">1W</button>
+              <button type="button" data-visits-range="1M" aria-label="Last month" aria-pressed="true">1M</button>
+              <button type="button" data-visits-range="6M" aria-label="Last six months" aria-pressed="false">6M</button>
+              <button type="button" data-visits-range="1Y" aria-label="Last year" aria-pressed="false">1Y</button>
+              <button type="button" data-visits-range="5Y" aria-label="Last five years" aria-pressed="false">5Y</button>
+              <button type="button" data-visits-range="Total" aria-label="All recorded history" aria-pressed="false">Total</button>
+            </div>
+            <div class="visits-custom-range">
+              <label for="visits-from">From <input id="visits-from" name="from" type="date" required aria-describedby="visits-range-error"></label>
+              <label for="visits-to">To <input id="visits-to" name="to" type="date" required aria-describedby="visits-range-error"></label>
+              <button type="submit">Apply</button>
+            </div>
+          </fieldset>
+          <p class="visits-range-error" id="visits-range-error" role="alert" hidden></p>
+        </form>
+
+        <p class="visits-status" id="visits-status" role="status">Loading visit counts…</p>
+        <noscript><p>JavaScript is needed to display the visit chart.</p></noscript>
+        <div id="visits-results" hidden>
+          <div class="visits-range-summary" aria-live="polite" aria-atomic="true">
+            <p class="visits-total"><strong id="visits-range-total">—</strong> <span id="visits-total-label">recorded visits</span></p>
+            <p><span id="visits-range-label"></span><br><span id="visits-coverage"></span></p>
+          </div>
+          <div class="visits-chart-wrap" id="visits-chart-wrap">
+            <svg class="visits-chart" id="visits-chart" role="group" tabindex="0" aria-labelledby="visits-chart-title" aria-describedby="visits-chart-desc visits-chart-help"></svg>
+          </div>
+          <p class="visits-point-info" id="visits-point-info" aria-live="polite" aria-atomic="true"></p>
+          <p class="visits-chart-help" id="visits-chart-help">Hover or tap to inspect a day. With the chart focused, use the arrow keys; Home and End jump to the range boundaries. Gaps mean no archived record, not zero visits.</p>
+          <details class="visits-table-details" id="visits-table-details">
+            <summary>View daily data</summary>
+            <table class="visits-table">
+              <caption id="visits-table-caption">Daily visit counts for the selected range</caption>
+              <thead><tr><th scope="col">Date</th><th scope="col">Visits</th><th scope="col">Coverage</th></tr></thead>
+              <tbody id="visits-table-body"></tbody>
+            </table>
+          </details>
+        </div>
+      </section>
+
+      <section class="visits-notes" aria-labelledby="visits-about-heading">
+        <h2 id="visits-about-heading">About these counts</h2>
+        <p>These are visits to the homepage (<code>/</code> and <code>/index.html</code>), not to the news, events, or visits pages. A visit is not a unique person; one person can visit more than once.</p>
+        <p>Counts come from Cloudflare Web Analytics. Traffic classified as bots is excluded, but this does not identify every bot. Ad blockers, disabled JavaScript, and other recording failures can leave visits uncounted.</p>
+        <p id="visits-estimates-note">Archived counts may be estimates. Only completed calendar days in Europe/Berlin are included; missing days are left as gaps.</p>
+        <p id="visits-partial-note" hidden></p>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>Last updated: <time data-last-updated>recently</time></p>
+      <a class="visits-link" href="visits.html" aria-current="page">Visits: <span data-visits-count>unavailable</span></a>
+    </footer>
+  </body>
+</html>

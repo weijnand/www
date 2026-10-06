@@ -134,12 +134,17 @@ nav {
   min-width: 0;
   align-items: center;
   gap: clamp(0.8rem, 2.5vw, 2rem);
+}
+
+nav,
+.home-link {
   font-size: 0.8rem;
   font-weight: 650;
   letter-spacing: 0.04em;
 }
 
-nav a {
+nav a,
+.home-link {
   text-decoration: none;
 }
 
@@ -148,7 +153,7 @@ nav a[aria-current="page"] {
 }
 
 .theme-toggle {
-  display: none;
+  display: inline-grid;
   flex: 0 0 auto;
   width: 2.5rem;
   height: 2.5rem;
@@ -162,8 +167,17 @@ nav a[aria-current="page"] {
   transition: color 160ms ease, background-color 160ms ease;
 }
 
-.theme-toggle:not([hidden]) {
-  display: inline-grid;
+.home-link {
+  display: inline-flex;
+  flex: 0 0 auto;
+  min-width: 2.5rem;
+  min-height: 2.5rem;
+  align-items: center;
+  margin-inline-end: auto;
+}
+
+.theme-toggle[hidden] {
+  display: none;
 }
 
 .theme-toggle:hover {
@@ -825,7 +839,6 @@ h3 {
 
 .archive-list {
   --thumbnail-width: clamp(5.5rem, 10vw, 8rem);
-  border-top: 1px solid var(--line);
 }
 
 .archive-list li {
@@ -835,6 +848,10 @@ h3 {
   align-items: start;
   padding-block: 1.4rem;
   border-bottom: 1px solid var(--line);
+}
+
+.archive-list > li:last-child {
+  border-bottom: 0;
 }
 
 .archive-list h2 {
@@ -857,8 +874,10 @@ h3 {
 
 .site-footer {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-between;
+  gap: 0.5rem 1.5rem;
   min-height: 4rem;
   border-top: 1px solid var(--line);
   color: var(--muted);
@@ -869,6 +888,17 @@ h3 {
 
 .site-footer p {
   margin: 0;
+}
+
+.visits-link {
+  margin-inline-start: auto;
+  padding-block: 0.65rem;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.visits-link:hover {
+  text-decoration: underline;
 }
 
 @media (max-width: 760px) {
@@ -900,6 +930,10 @@ h3 {
 
   nav a {
     flex: 0 0 auto;
+  }
+
+  .home-link {
+    padding-bottom: 0.25rem;
   }
 
   .theme-toggle {

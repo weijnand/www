@@ -3,3 +3,6 @@
 
 # Keep full-resolution thumbnail sources local.
 /assets/thumbnails/source/
+
+# Keep local design comparisons out of the published site.
+/work/previews/

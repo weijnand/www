@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Visits model checks</title>
+    <script src="../scripts/visits-page.js"></script>
+  </head>
+  <body>
+    <h1>Visits model checks</h1>
+    <pre id="results"></pre>
+    <script>
+      (() => {
+        const model = window.WvwVisitsModel;
+        const results = [];
+        function check(name, actual, expected) {
+          const passed = JSON.stringify(actual) === JSON.stringify(expected);
+          results.push({ name, passed, actual, expected });
+        }
+        check("valid leap day", model.validDate("2024-02-29"), true);
+        check("reject normalized invalid day", model.validDate("2026-02-29"), false);
+        check("reject malformed date", model.validDate("2026-2-3"), false);
+        check("clamp month end", model.shiftMonths("2026-03-31", -1), "2026-02-28");
+        check("preserve leap month end", model.shiftMonths("2024-03-31", -1), "2024-02-29");
+        check("inclusive week", model.presetRange("1W", "2026-08-21", "2026-10-05"), { from: "2026-09-29", to: "2026-10-05" });
+        check("calendar month", model.presetRange("1M", "2026-01-01", "2026-03-31"), { from: "2026-03-01", to: "2026-03-31" });
+        check("preset clips to tracking start", model.presetRange("5Y", "2026-08-21", "2026-10-05"), { from: "2026-08-21", to: "2026-10-05" });
+        check("Total uses entire archive", model.presetRange("Total", "2026-08-21", "2026-10-05"), { from: "2026-08-21", to: "2026-10-05" });
+        const data = { daily: [{ date: "2026-03-28", visits: 4 }, { date: "2026-03-30", visits: 0 }], partial_dates: ["2026-03-28"] };
+        const range = model.rangeData(data, "2026-03-28", "2026-03-30");
+        check("DST interval has three calendar days", range.days.length, 3);
+        check("missing record differs from zero", range.days.map(day => day.visits), [4, null, 0]);
+        check("partial tracking marker preserved", range.days.map(day => day.partial), [true, false, false]);
+        check("sum only recorded values", range.total, 4);
+        check("coverage reports actual records", [range.recorded, range.missing], [2, 1]);
+        check("all-missing interval is not zero", model.rangeData(data, "2026-03-29", "2026-03-29").total, null);
+        check("genuine zero remains zero", model.rangeData(data, "2026-03-30", "2026-03-30").total, 0);
+        check("single day is included", model.rangeData(data, "2026-03-30", "2026-03-30").days.length, 1);
+        document.getElementById("results").textContent = JSON.stringify(results, null, 2);
+        document.documentElement.dataset.testsPassed = String(results.every(result => result.passed));
+        window.visitsModelTestResults = results;
+      })();
+    </script>
+  </body>
+</html>
