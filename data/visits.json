@@ -4,11 +4,11 @@
   "scope": "homepage",
   "exclude_bots": true,
   "start_date": "2026-08-21",
-  "as_of": "2026-10-19",
-  "total_visits": 395,
+  "as_of": "2026-10-20",
+  "total_visits": 400,
   "coverage": {
-    "recorded_days": 60,
-    "expected_days": 60,
+    "recorded_days": 61,
+    "expected_days": 61,
     "missing_days": 0
   },
   "partial_dates": [
@@ -255,6 +255,10 @@
     {
       "date": "2026-10-19",
       "visits": 8
+    },
+    {
+      "date": "2026-10-20",
+      "visits": 5
     }
   ]
 }
