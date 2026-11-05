@@ -2,7 +2,7 @@
   const storageKey = "wvw-theme";
   const localThemeParameter = "wvw-theme";
   const isLocalFile = window.location.protocol === "file:";
-  const localPageNames = new Set(["index.html", "news.html", "events.html", "visits.html"]);
+  const localPageNames = new Set(["index.html", "news.html", "events.html"]);
   const systemTheme = window.matchMedia("(prefers-color-scheme: dark)");
   const root = document.documentElement;
   let preferredTheme = null;
