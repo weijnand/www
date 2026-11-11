@@ -14,7 +14,7 @@
     <link rel="icon" href="assets/icons/favicon-32.png?v=13" sizes="32x32" type="image/png">
     <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png?v=13">
     <script src="scripts/theme.js?v=4"></script>
-    <link rel="stylesheet" href="styles.css?v=33">
+    <link rel="stylesheet" href="styles.css?v=40">
     <script src="scripts/site.js?v=15" defer></script>
     <script src="scripts/lightbox.js?v=1" defer></script>
     <!-- Cloudflare Web Analytics -->
@@ -131,16 +131,18 @@
 
         <figure class="portrait-wrap">
           <span class="portrait-accent" aria-hidden="true"></span>
-          <img
-            class="portrait"
-            src="assets/images/portraits/wijnand-portrait-1.webp?v=3"
-            data-random-portrait
-            data-portraits="assets/images/portraits/wijnand-portrait-1.webp?v=3|assets/images/portraits/wijnand-portrait-2.webp?v=3|assets/images/portraits/wijnand-portrait-3.webp?v=3|assets/images/portraits/wijnand-portrait-4.webp?v=3|assets/images/portraits/wijnand-portrait-5.webp"
-            alt="Wijnand van Woerkom"
-            width="960"
-            height="1200"
-            fetchpriority="high"
-          >
+          <span class="portrait-frame">
+            <img
+              class="portrait"
+              src="assets/images/portraits/wijnand-portrait-1.webp?v=3"
+              data-random-portrait
+              data-portraits="assets/images/portraits/wijnand-portrait-1.webp?v=3|assets/images/portraits/wijnand-portrait-2.webp?v=3|assets/images/portraits/wijnand-portrait-3.webp?v=3|assets/images/portraits/wijnand-portrait-4.webp?v=3|assets/images/portraits/wijnand-portrait-5.webp|assets/images/portraits/wijnand-portrait-6.webp"
+              alt="Wijnand van Woerkom"
+              width="960"
+              height="1200"
+              fetchpriority="high"
+            >
+          </span>
         </figure>
       </section>
 
@@ -169,7 +171,7 @@
                 </a>
                 <div>
                   <time datetime="2026-08-21">21 August 2026</time>
-                  <h3>New website!</h3>
+                  <h3><a href="https://wijnand.de/">New website!</a></h3>
                   <p>This homepage is now online.</p>
                 </div>
               </li>
@@ -196,6 +198,29 @@
             <ul class="preview-list">
               <!-- Keep these first three entries in sync with events.html. -->
               <li>
+                <a class="item-thumbnail" href="assets/thumbnails/full/lawsnack.webp" data-lightbox aria-haspopup="dialog" aria-label="Enlarge image for What can AI do for law?">
+                  <img class="thumbnail-lawsnack" src="assets/thumbnails/lawsnack.webp" alt="" width="480" height="384" loading="lazy" decoding="async">
+                </a>
+                <div>
+                  <p class="entry-date"><time datetime="2026-11-14">14 November 2026</time>&nbsp;<span class="entry-status">· Upcoming</span></p>
+                  <h3><a href="https://www.mpipriv.de/open-house">“What can AI do for law?”</a></h3>
+                  <p>Open house · Law Lounge · 20:15–20:45 (Germany) · Hamburg</p>
+                </div>
+              </li>
+              <li>
+                <a class="item-thumbnail" href="assets/thumbnails/full/artificial-justice-light.webp?v=2" data-lightbox data-lightbox-dark="assets/thumbnails/full/artificial-justice-dark.webp?v=2" aria-haspopup="dialog" aria-label="Enlarge image for Yoshinobu Kano: Can AI Write Court Judgments? Legal NLP and the Future of Civil Justice in Japan">
+                  <img class="thumbnail-light" src="assets/thumbnails/artificial-justice-light.webp?v=4" alt="" width="480" height="384" loading="lazy" decoding="async">
+                  <img class="thumbnail-dark" src="assets/thumbnails/artificial-justice-dark.webp?v=4" alt="" width="480" height="384" loading="lazy" decoding="async">
+                </a>
+                <div>
+                  <time datetime="2026-11-04">4 November 2026</time>
+                  <h3>
+                    <a href="https://www.mpipriv.de/events/47195/1926527">Yoshinobu Kano: Can AI Write Court Judgments? Legal NLP and the Future of Civil Justice in Japan</a>
+                  </h3>
+                  <p>Artificial Justice Speaker Series · Online</p>
+                </div>
+              </li>
+              <li>
                 <a class="item-thumbnail" href="assets/thumbnails/full/artificial-justice-light.webp?v=2" data-lightbox data-lightbox-dark="assets/thumbnails/full/artificial-justice-dark.webp?v=2" aria-haspopup="dialog" aria-label="Enlarge image for Jed Stiglitz: Precedent-Predictability: Stability and Innovation in Law, 1790–2026">
                   <img class="thumbnail-light" src="assets/thumbnails/artificial-justice-light.webp?v=4" alt="" width="480" height="384" loading="lazy" decoding="async">
                   <img class="thumbnail-dark" src="assets/thumbnails/artificial-justice-dark.webp?v=4" alt="" width="480" height="384" loading="lazy" decoding="async">
@@ -204,32 +229,6 @@
                   <time datetime="2026-10-07">7 October 2026</time>
                   <h3>
                     <a href="https://www.mpipriv.de/events/46860/1929073">Jed Stiglitz: Precedent-Predictability: Stability and Innovation in Law, 1790–2026</a>
-                  </h3>
-                  <p>Artificial Justice Speaker Series · Online</p>
-                </div>
-              </li>
-              <li>
-                <a class="item-thumbnail" href="assets/thumbnails/full/artificial-justice-light.webp?v=2" data-lightbox data-lightbox-dark="assets/thumbnails/full/artificial-justice-dark.webp?v=2" aria-haspopup="dialog" aria-label="Enlarge image for Hannes Westermann: Augmented Large Language Models for Access to Justice">
-                  <img class="thumbnail-light" src="assets/thumbnails/artificial-justice-light.webp?v=4" alt="" width="480" height="384" loading="lazy" decoding="async">
-                  <img class="thumbnail-dark" src="assets/thumbnails/artificial-justice-dark.webp?v=4" alt="" width="480" height="384" loading="lazy" decoding="async">
-                </a>
-                <div>
-                  <time datetime="2026-09-02">2 September 2026</time>
-                  <h3>
-                    <a href="https://www.mpipriv.de/events/46498/1929073">Hannes Westermann: Augmented Large Language Models for Access to Justice</a>
-                  </h3>
-                  <p>Artificial Justice Speaker Series · Online</p>
-                </div>
-              </li>
-              <li>
-                <a class="item-thumbnail" href="assets/thumbnails/full/artificial-justice-light.webp?v=2" data-lightbox data-lightbox-dark="assets/thumbnails/full/artificial-justice-dark.webp?v=2" aria-haspopup="dialog" aria-label="Enlarge image for Joel Niklaus: SwiLTra-Bench">
-                  <img class="thumbnail-light" src="assets/thumbnails/artificial-justice-light.webp?v=4" alt="" width="480" height="384" loading="lazy" decoding="async">
-                  <img class="thumbnail-dark" src="assets/thumbnails/artificial-justice-dark.webp?v=4" alt="" width="480" height="384" loading="lazy" decoding="async">
-                </a>
-                <div>
-                  <time datetime="2026-06-03">3 June 2026</time>
-                  <h3>
-                    <a href="https://www.mpipriv.de/events/45762/1929073">Joel Niklaus: SwiLTra-Bench</a>
                   </h3>
                   <p>Artificial Justice Speaker Series · Online</p>
                 </div>
@@ -246,6 +245,23 @@
         </header>
         <div class="section-content">
           <ol class="publication-list" id="publication-list">
+            <li>
+              <article>
+                <p class="entry-type">Conference paper · 2026 · In press</p>
+                <h3>Neuro-Symbolic AI and Byzantine Law: Rulemapping <em>Condictiones</em> of the <em>Digest</em></h3>
+                <p class="authors">
+                  <a href="https://research.vu.nl/en/persons/h-de-jong/">Hylkje de Jong</a>,
+                  <a href="https://www.mpipriv.de/voncossel">Oskar von Cossel</a>,
+                  <a href="https://www.mpipriv.de/1464679/schmidt-katharina-isabel">Katharina Isabel Schmidt</a>, and
+                  <strong>Wijnand van Woerkom</strong>
+                </p>
+                <p class="citation">In <em>Legal Knowledge and Information Systems: JURIX 2026</em>.</p>
+                <p class="entry-links">
+                  <a href="https://www.irit.fr/jurix2026/program/">URL</a>
+                  <a href="assets/documents/publications/dejong2026neurosymbolicai.pdf">PDF</a>
+                </p>
+              </article>
+            </li>
             <li>
               <article>
                 <p class="entry-type">Conference paper · 2026 · In press</p>
@@ -458,15 +474,29 @@
         <div class="section-content">
           <ul class="event-list" id="talk-list">
             <li>
-              <p class="entry-date">2026</p>
+              <p class="entry-date"><time datetime="2026-11">Nov 2026</time> <span class="entry-status">· Upcoming</span></p>
               <div>
-                <h3>Measuring Case-Base Consistency with Monotonicity Metrics</h3>
+                <h3><a href="https://www.mpipriv.de/open-house">“What can AI do for law?”</a></h3>
+                <p>Open house · Max Planck Institute, Hamburg</p>
+              </div>
+            </li>
+            <li>
+              <p class="entry-date"><time datetime="2026-10">Oct 2026</time></p>
+              <div>
+                <h3><a href="https://www.hybrid-intelligence-centre.nl/meetings/october-2026-together-and-onward/">PhD Presentation</a></h3>
+                <p>Hybrid Intelligence: Together and Onward · Vrije Universiteit Amsterdam, the Netherlands</p>
+              </div>
+            </li>
+            <li>
+              <p class="entry-date"><time datetime="2026-06">Jun 2026</time></p>
+              <div>
+                <h3><a href="https://site.smu.edu.sg/icail-2026">“Measuring Case-Base Consistency with Monotonicity Metrics”</a></h3>
                 <p>21st International Conference on Artificial Intelligence and Law (ICAIL 2026) · Singapore</p>
               </div>
             </li>
             <li>
               <p class="entry-date">
-                2026 <span aria-hidden="true">·</span>
+                <time datetime="2026-01">Jan 2026</time> <span aria-hidden="true">·</span>
                 <a
                   class="recording-link"
                   href="https://underline.io/lecture/143547-a-fortiori-case-based-reasoning-from-theory-to-data"
@@ -474,69 +504,76 @@
                 >REC</a>
               </p>
               <div>
-                <h3><em>A Fortiori</em> Case-Based Reasoning: From Theory to Data</h3>
+                <h3><a href="https://aaai.org/conference/aaai/aaai-26/">“<em>A Fortiori</em> Case-Based Reasoning: From Theory to Data”</a></h3>
                 <p>40th AAAI Conference on Artificial Intelligence (AAAI-26) · Singapore</p>
               </div>
             </li>
             <li>
-              <p class="entry-date">2025</p>
+              <p class="entry-date"><time datetime="2025-10">Oct 2025</time></p>
               <div>
-                <h3>Keynote speaker</h3>
+                <h3><a href="https://webspace.science.uu.nl/~prakk101/16oct25/">Keynote speaker</a></h3>
                 <p><em>Ethical and Legal Perspectives on Explainable AI</em> symposium · Utrecht, the Netherlands</p>
               </div>
             </li>
             <li>
-              <p class="entry-date">2025</p>
+              <p class="entry-date"><time datetime="2025-06">Jun 2025</time></p>
               <div>
-                <h3>Formal Results on Case-Base Consistency: A COMPAS Case Study</h3>
+                <h3><a href="https://sites.northwestern.edu/icail2025/">“Formal Results on Case-Base Consistency: A COMPAS Case Study”</a></h3>
                 <p>20th International Conference on Artificial Intelligence and Law (ICAIL 2025) · Chicago, United States</p>
               </div>
             </li>
             <li>
-              <p class="entry-date">2024</p>
+              <p class="entry-date"><time datetime="2024-12">Dec 2024</time></p>
               <div>
-                <h3>Computable Case Law and Its Applications to Responsible AI</h3>
-                <p>CodeX FutureLaw Conference · Stanford Law School, Palo Alto, United States</p>
+                <h3><a href="https://jurix2024.law.muni.cz/">“A Case-Based-Reasoning Analysis of the COMPAS Dataset”</a></h3>
+                <p>37th International Conference on Legal Knowledge and Information Systems (JURIX 2024) · Brno, Czech Republic</p>
               </div>
             </li>
             <li>
-              <p class="entry-date">2024</p>
+              <p class="entry-date"><time datetime="2024-11">Nov 2024</time></p>
               <div>
-                <h3><em>A Fortiori</em> Case-Based Reasoning: From Theory to Data</h3>
+                <h3><a href="https://bnaic2024.sites.uu.nl/">“<em>A Fortiori</em> Case-Based Reasoning: From Theory to Data”</a></h3>
                 <p>Joint International Scientific Conferences on AI and Machine Learning (BNAIC 2024) · Utrecht, the Netherlands</p>
               </div>
             </li>
             <li>
-              <p class="entry-date">2023</p>
+              <p class="entry-date"><time datetime="2024-04">Apr 2024</time></p>
               <div>
-                <h3>Hierarchical <em>A Fortiori</em> Reasoning with Dimensions</h3>
+                <h3><a href="https://conferences.law.stanford.edu/futurelaw2024/">“Computable Case Law and Its Applications to Responsible AI”</a></h3>
+                <p>CodeX FutureLaw Conference · Stanford Law School, Palo Alto, United States</p>
+              </div>
+            </li>
+            <li>
+              <p class="entry-date"><time datetime="2023-12">Dec 2023</time></p>
+              <div>
+                <h3><a href="https://jurix23.maastrichtlawtech.eu/">“Hierarchical <em>A Fortiori</em> Reasoning with Dimensions”</a></h3>
                 <p>36th International Conference on Legal Knowledge and Information Systems (JURIX 2023) · Maastricht, the Netherlands</p>
               </div>
             </li>
             <li>
-              <p class="entry-date">2023</p>
+              <p class="entry-date"><time datetime="2023-06">Jun 2023</time></p>
               <div>
-                <h3>Hierarchical Precedential Constraint</h3>
+                <h3><a href="https://icail2023.di.uminho.pt/">“Hierarchical Precedential Constraint”</a></h3>
                 <p>19th International Conference on Artificial Intelligence and Law (ICAIL 2023) · Braga, Portugal</p>
               </div>
             </li>
             <li>
-              <p class="entry-date">2022</p>
+              <p class="entry-date"><time datetime="2022-09">Sep 2022</time></p>
               <div>
-                <h3>Justification in Case-Based Reasoning</h3>
+                <h3><a href="https://people.cs.umu.se/tkampik/argxai/2022.html">“Justification in Case-Based Reasoning”</a></h3>
                 <p>1st International Workshop on Argumentation for eXplainable AI (ArgXAI 2022) · Cardiff, Wales</p>
               </div>
             </li>
             <li>
-              <p class="entry-date">2022</p>
+              <p class="entry-date"><time datetime="2022-06">Jun 2022</time></p>
               <div>
-                <h3>Landmarks in Case-Based Reasoning</h3>
+                <h3><a href="https://hhai-conference.org/2022/">“Landmarks in Case-Based Reasoning”</a></h3>
                 <p>1st International Conference on Hybrid Human-Machine Intelligence (HHAI 2022) · Vrije Universiteit Amsterdam, the Netherlands</p>
               </div>
             </li>
             <li>
               <p class="entry-date">
-                2022 <span aria-hidden="true">·</span>
+                <time datetime="2022-05">May 2022</time> <span aria-hidden="true">·</span>
                 <a
                   class="recording-link"
                   href="https://www.youtube.com/watch?v=cjKWL9bQHso"
@@ -544,7 +581,7 @@
                 >REC</a>
               </p>
               <div>
-                <h3>The Frobenius Property for Algebraic Weak Factorisation Systems</h3>
+                <h3><a href="https://dutchcats.github.io/">“The Frobenius Property for Algebraic Weak Factorisation Systems”</a></h3>
                 <p>Dutch Categories and Types Seminar · University of Amsterdam, the Netherlands</p>
               </div>
             </li>

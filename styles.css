@@ -393,11 +393,24 @@ h1 {
   border: 1px solid var(--accent);
 }
 
+.portrait-frame {
+  position: relative;
+  display: block;
+  overflow: hidden;
+}
+
 .portrait {
   position: relative;
   width: 100%;
   aspect-ratio: 4 / 5;
   object-fit: cover;
+}
+
+/* Crop the original event artwork to (1020, 200, 640, 800),
+   keeping the illustrated face centered without altering the source image. */
+.portrait[src*="wijnand-portrait-6.webp"] {
+  object-position: 85.98485% 50%;
+  transform: translateY(-7.5%) scale(1.35);
 }
 
 .split-section {
@@ -458,6 +471,7 @@ h3 {
 }
 
 .preview-list h3 > a::before,
+.event-list h3 > a::before,
 .archive-list h2 > a::before {
   display: inline-block;
   width: 0.78em;
@@ -511,6 +525,11 @@ h3 {
   height: auto;
   aspect-ratio: 5 / 4;
   object-fit: cover;
+}
+
+.item-thumbnail .thumbnail-lawsnack {
+  object-fit: contain;
+  background: #c6d31a;
 }
 
 .item-thumbnail .thumbnail-dark,
@@ -598,7 +617,7 @@ h3 {
   border-bottom: 0;
 }
 
-.preview-list time,
+.preview-list li > div > time,
 .preview-list .entry-date {
   display: block;
   margin: 0 0 0.4rem;
@@ -607,6 +626,10 @@ h3 {
 .preview-list p:not(.entry-date) {
   margin: 0.35rem 0 0;
   color: var(--muted);
+}
+
+.entry-status {
+  white-space: nowrap;
 }
 
 .text-link {
@@ -622,6 +645,13 @@ h3 {
   gap: clamp(2rem, 5.5vw, 5.5rem);
   padding-block: var(--section-padding);
   border-top: 1px solid var(--line);
+}
+
+@media (min-width: 761px) {
+  #talks {
+    grid-template-columns: minmax(8rem, 0.22fr) minmax(0, 1fr);
+    column-gap: clamp(2rem, 4vw, 4rem);
+  }
 }
 
 .section-heading {
@@ -770,7 +800,7 @@ h3 {
 
 .event-list li {
   display: grid;
-  grid-template-columns: 6rem minmax(0, 1fr);
+  grid-template-columns: 12rem minmax(0, 1fr);
   gap: 1.25rem;
   padding-block: 1.1rem;
   border-bottom: 1px solid var(--line);
@@ -992,6 +1022,7 @@ h3 {
   }
 
   .archive-list li > time,
+  .archive-list li > .entry-date,
   .archive-list li > div {
     grid-column: 2;
   }
