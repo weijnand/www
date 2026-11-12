@@ -1,6 +1,6 @@
 (() => {
   const SLOW_PRONUNCIATION_RATE = 0.7;
-  const sectionHeadings = document.querySelectorAll(".split-panel > .section-heading h2");
+  const sectionHeadings = document.querySelectorAll(".section-heading h2");
 
   if (sectionHeadings.length) {
     const textMetrics = document.createElement("canvas").getContext("2d");

@@ -11,6 +11,9 @@
   --surface-hover: rgb(255 255 255 / 48%);
   --content-width: 76rem;
   --section-padding: clamp(1.375rem, 2.25vw, 1.75rem);
+  --divider-heading-size: clamp(1.4rem, 2.2vw, 1.75rem);
+  --divider-heading-inset: 0.25rem;
+  --divider-heading-gap: 0.85rem;
   color-scheme: light;
   color: var(--ink);
   background: var(--paper);
@@ -419,14 +422,12 @@ h1 {
   --section-padding: clamp(0.5rem, calc(3.5vw - 1.5rem), 1.25rem);
   --split-gap: clamp(1.25rem, 2.5vw, 2rem);
   --thumbnail-width: clamp(5rem, 8.5vw, 7.5rem);
-  --divider-heading-size: clamp(1.4rem, 2.2vw, 1.75rem);
-  --divider-heading-inset: 0.25rem;
-  --divider-heading-gap: 0.85rem;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .split-panel {
+  --preview-link-space: 6.5rem;
   display: grid;
   grid-template-columns: var(--thumbnail-width) minmax(0, 1fr);
   grid-template-rows: auto 1fr;
@@ -443,39 +444,37 @@ h1 {
   grid-column: 1 / -1;
 }
 
-.split-panel > .section-heading {
-  display: flex;
-  align-items: center;
-  gap: var(--divider-heading-gap);
-}
-
-.split-panel > .section-heading::after {
-  content: "";
+.section-heading::after {
   flex: 1;
   height: 1px;
   background: var(--line);
 }
 
-.split-panel > .section-content {
-  display: flex;
-  flex-direction: column;
-  align-self: stretch;
-  gap: 0.9rem;
+.split-panel > .section-heading::after {
+  content: "";
 }
 
-.split-panel > .section-heading h2 {
-  flex: 0 0 auto;
-  max-width: none;
-  /* Align the visible first letter, using its measured font side bearing. */
-  margin-left: var(--heading-optical-offset, 0px);
-  font-size: var(--divider-heading-size);
-  letter-spacing: -0.035em;
-  line-height: 1;
+.split-panel > .section-content {
+  align-self: stretch;
 }
 
 .split-panel .text-link {
-  align-self: flex-end;
-  margin-top: auto;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  margin-top: 0;
+  white-space: nowrap;
+}
+
+.preview-ending {
+  /* Keep the final words beside the archive link without narrowing every line. */
+  white-space: nowrap;
+}
+
+.preview-ending::after {
+  content: "";
+  display: inline-block;
+  width: var(--preview-link-space);
 }
 
 .split-panel:first-child {
@@ -483,6 +482,7 @@ h1 {
 }
 
 .split-panel + .split-panel {
+  --preview-link-space: 7.5rem;
   padding-left: var(--split-gap);
   border-left: 1px solid var(--line);
 }
@@ -710,11 +710,20 @@ h3 {
 }
 
 .section-heading {
+  display: flex;
+  align-items: center;
   align-self: start;
+  gap: var(--divider-heading-gap);
 }
 
 .section-heading h2 {
-  max-width: 9ch;
+  flex: 0 0 auto;
+  max-width: none;
+  /* Align the visible first letter, using its measured font side bearing. */
+  margin-left: var(--heading-optical-offset, 0px);
+  font-size: var(--divider-heading-size);
+  letter-spacing: -0.035em;
+  line-height: 1;
 }
 
 .section-content {
@@ -1005,7 +1014,11 @@ h3 {
     overflow-x: auto;
     gap: clamp(0.5rem, 2vw, 1rem);
     padding-bottom: 0.25rem;
-    scrollbar-width: thin;
+    scrollbar-width: none;
+  }
+
+  nav::-webkit-scrollbar {
+    display: none;
   }
 
   nav a {
@@ -1066,8 +1079,13 @@ h3 {
     gap: 1.25rem;
   }
 
-  .section-heading h2 {
-    max-width: 12ch;
+  .content-section {
+    padding-top: var(--divider-heading-inset);
+    border-top: 0;
+  }
+
+  .content-section > .section-heading::after {
+    content: "";
   }
 
   .event-list li {
