@@ -419,25 +419,41 @@ h1 {
   --section-padding: clamp(0.5rem, calc(3.5vw - 1.5rem), 1.25rem);
   --split-gap: clamp(1.25rem, 2.5vw, 2rem);
   --thumbnail-width: clamp(5rem, 8.5vw, 7.5rem);
+  --divider-heading-size: clamp(1.4rem, 2.2vw, 1.75rem);
+  --divider-heading-inset: 0.25rem;
+  --divider-heading-gap: 0.85rem;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  border-top: 1px solid var(--line);
 }
 
 .split-panel {
   display: grid;
   grid-template-columns: var(--thumbnail-width) minmax(0, 1fr);
   grid-template-rows: auto 1fr;
-  gap: 1rem var(--split-gap);
+  gap: 0.65rem var(--split-gap);
   align-content: start;
   align-items: start;
   min-width: 0;
   padding-block: var(--section-padding);
+  padding-top: var(--divider-heading-inset);
 }
 
 .split-panel > .section-heading,
 .split-panel > .section-content {
   grid-column: 1 / -1;
+}
+
+.split-panel > .section-heading {
+  display: flex;
+  align-items: center;
+  gap: var(--divider-heading-gap);
+}
+
+.split-panel > .section-heading::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--line);
 }
 
 .split-panel > .section-content {
@@ -448,8 +464,13 @@ h1 {
 }
 
 .split-panel > .section-heading h2 {
+  flex: 0 0 auto;
+  max-width: none;
   /* Align the visible first letter, using its measured font side bearing. */
   margin-left: var(--heading-optical-offset, 0px);
+  font-size: var(--divider-heading-size);
+  letter-spacing: -0.035em;
+  line-height: 1;
 }
 
 .split-panel .text-link {
@@ -464,6 +485,30 @@ h1 {
 .split-panel + .split-panel {
   padding-left: var(--split-gap);
   border-left: 1px solid var(--line);
+}
+
+@media (min-width: 761px) {
+  .split-panel:first-child > .section-heading::after {
+    /* Bridge both gutters, leaving the same gap on either side of Events. */
+    margin-right: calc(var(--divider-heading-gap) - 2 * var(--split-gap) - 1px);
+  }
+
+  .split-panel + .split-panel {
+    position: relative;
+    border-left-color: transparent;
+  }
+
+  .split-panel + .split-panel::before {
+    content: "";
+    position: absolute;
+    /* Match the top edge of the 1px rule centered beside the heading. */
+    top: calc(var(--divider-heading-inset) + (var(--divider-heading-size) - 1px) / 2);
+    bottom: 0;
+    left: -1px;
+    width: 1px;
+    background: var(--line);
+    pointer-events: none;
+  }
 }
 
 h2 {
@@ -1012,7 +1057,6 @@ h3 {
   }
 
   .split-panel + .split-panel {
-    border-top: 1px solid var(--line);
     border-left: 0;
   }
 
