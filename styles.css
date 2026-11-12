@@ -14,6 +14,7 @@
   --divider-heading-size: clamp(1.4rem, 2.2vw, 1.75rem);
   --divider-heading-inset: 0.25rem;
   --divider-heading-gap: 0.85rem;
+  --entry-divider-padding: 0.8rem;
   color-scheme: light;
   color: var(--ink);
   background: var(--paper);
@@ -567,7 +568,7 @@ h3 {
   grid-template-columns: var(--thumbnail-width) minmax(0, 1fr);
   gap: var(--split-gap);
   align-items: start;
-  padding-block: 0.8rem;
+  padding-block: var(--entry-divider-padding);
   border-bottom: 1px solid var(--line);
 }
 
@@ -750,12 +751,12 @@ h3 {
 
 .publication-list li {
   position: relative;
-  padding: 0 0 1.1rem 2.75rem;
+  padding: 0 0 var(--entry-divider-padding) 2.75rem;
   counter-increment: publication;
 }
 
 .publication-list li + li {
-  padding-top: 1.1rem;
+  padding-top: var(--entry-divider-padding);
   border-top: 1px solid var(--line);
 }
 
@@ -771,7 +772,7 @@ h3 {
 }
 
 .publication-list li + li::before {
-  top: 1.1rem;
+  top: var(--entry-divider-padding);
 }
 
 .publication-list.is-collapsed > li:nth-child(n + 6) {
@@ -885,7 +886,7 @@ h3 {
   display: grid;
   grid-template-columns: 12rem minmax(0, 1fr);
   gap: 1rem;
-  padding-block: 0.85rem;
+  padding-block: var(--entry-divider-padding);
   border-bottom: 1px solid var(--line);
 }
 
@@ -1114,7 +1115,7 @@ h3 {
     padding-top: 0;
   }
 
-  .event-list > li:first-child > .entry-date {
+  .event-list > li > .entry-date {
     margin-top: 0;
   }
 
