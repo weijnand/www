@@ -891,7 +891,7 @@ h3 {
 }
 
 .event-list li:first-child {
-  padding-top: 0.25rem;
+  padding-top: 0;
 }
 
 .event-list > li:last-child,
@@ -1109,10 +1109,6 @@ h3 {
   .event-list li {
     grid-template-columns: 1fr;
     gap: 0.45rem;
-  }
-
-  .event-list > li:first-child {
-    padding-top: 0;
   }
 
   .event-list > li > .entry-date {
