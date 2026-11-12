@@ -1081,6 +1081,7 @@ h3 {
 
   .content-section {
     padding-top: var(--divider-heading-inset);
+    padding-bottom: 0.5rem;
     border-top: 0;
   }
 
@@ -1091,6 +1092,14 @@ h3 {
   .event-list li {
     grid-template-columns: 1fr;
     gap: 0.45rem;
+  }
+
+  .event-list > li:first-child {
+    padding-top: 0;
+  }
+
+  .event-list > li:first-child > .entry-date {
+    margin-top: 0;
   }
 
   .archive-list li {
