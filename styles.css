@@ -134,9 +134,10 @@ button:focus-visible {
 
 nav {
   display: flex;
+  flex: 1;
   min-width: 0;
   align-items: center;
-  gap: clamp(0.8rem, 2.5vw, 2rem);
+  gap: clamp(0.4rem, 1.25vw, 1rem);
 }
 
 nav,
@@ -149,6 +150,23 @@ nav,
 nav a,
 .home-link {
   text-decoration: none;
+}
+
+nav a {
+  display: inline-flex;
+  flex: 0 0 auto;
+  min-height: 2.5rem;
+  align-items: center;
+}
+
+.nav-separator {
+  flex: 0 0 auto;
+  font-weight: 900;
+  letter-spacing: 0;
+}
+
+.nav-separator-home {
+  display: none;
 }
 
 nav a[aria-current="page"] {
@@ -171,11 +189,6 @@ nav a[aria-current="page"] {
 }
 
 .home-link {
-  display: inline-flex;
-  flex: 0 0 auto;
-  min-width: 2.5rem;
-  min-height: 2.5rem;
-  align-items: center;
   margin-inline-end: auto;
 }
 
@@ -1005,15 +1018,13 @@ h3 {
   }
 
   .header-inner {
-    min-height: 0;
     justify-content: flex-start;
     padding-block: 0.2rem;
   }
 
   nav {
     overflow-x: auto;
-    gap: clamp(0.5rem, 2vw, 1rem);
-    padding-bottom: 0.25rem;
+    gap: clamp(0.25rem, 1vw, 0.5rem);
     scrollbar-width: none;
   }
 
@@ -1021,12 +1032,17 @@ h3 {
     display: none;
   }
 
-  nav a {
-    flex: 0 0 auto;
+  nav a:focus-visible {
+    /* Keep the focus ring visible inside the horizontal scroller. */
+    outline-offset: -0.2rem;
   }
 
   .home-link {
-    padding-bottom: 0.25rem;
+    margin-inline-end: 0;
+  }
+
+  .nav-separator-home {
+    display: block;
   }
 
   .theme-toggle {
