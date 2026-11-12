@@ -806,6 +806,24 @@ h3 {
   white-space: nowrap;
 }
 
+@media (min-width: 761px) {
+  .publication-list .entry-type {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+  }
+
+  .publication-links {
+    flex: 0 0 auto;
+    margin-inline-start: auto;
+  }
+
+  .publication-links > span:first-child {
+    /* The leading dot is only needed when the links follow the metadata inline. */
+    display: none;
+  }
+}
+
 .authors,
 .citation {
   margin: 0.45rem 0 0;
