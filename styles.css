@@ -10,7 +10,7 @@
   --header-line: rgb(23 33 31 / 14%);
   --surface-hover: rgb(255 255 255 / 48%);
   --content-width: 76rem;
-  --section-padding: clamp(2.5rem, 4.5vw, 3.5rem);
+  --section-padding: clamp(1.375rem, 2.25vw, 1.75rem);
   color-scheme: light;
   color: var(--ink);
   background: var(--paper);
@@ -44,7 +44,7 @@ html {
 }
 
 [id] {
-  scroll-margin-top: 4.75rem;
+  scroll-margin-top: 4.25rem;
 }
 
 body {
@@ -123,7 +123,7 @@ button:focus-visible {
 
 .header-inner {
   display: flex;
-  min-height: 3.75rem;
+  min-height: 3.25rem;
   align-items: center;
   justify-content: flex-end;
   gap: clamp(0.5rem, 2vw, 1.5rem);
@@ -208,8 +208,8 @@ nav a[aria-current="page"] {
   display: grid;
   grid-template-columns: minmax(0, 1.45fr) minmax(16rem, 0.65fr);
   align-items: center;
-  gap: clamp(2.5rem, 6vw, 6rem);
-  padding-block: clamp(3.25rem, 6vw, 5rem);
+  gap: clamp(2rem, 4vw, 4rem);
+  padding-block: var(--section-padding);
 }
 
 .hero-copy {
@@ -251,6 +251,7 @@ h1 {
 .name-heading {
   min-height: 1.84em;
   max-width: none;
+  font-size: clamp(2.5rem, 4.6vw, 3.75rem);
 }
 
 .name-part {
@@ -336,7 +337,7 @@ h1 {
 
 .role {
   max-width: 41rem;
-  margin: 1.25rem 0 0;
+  margin: 1rem 0 0;
   color: var(--accent);
   font-size: clamp(0.98rem, 1.5vw, 1.1rem);
   font-weight: 650;
@@ -345,7 +346,7 @@ h1 {
 
 .introduction {
   max-width: 43rem;
-  margin: 1rem 0 0;
+  margin: 0.8rem 0 0;
   color: var(--muted);
   font-family: Georgia, "Times New Roman", serif;
   font-size: clamp(1.05rem, 1.6vw, 1.22rem);
@@ -356,7 +357,7 @@ h1 {
   display: flex;
   flex-wrap: wrap;
   gap: 0.55rem;
-  margin: 1.5rem 0 0;
+  margin: 1.1rem 0 0;
   padding: 0;
   list-style: none;
 }
@@ -382,8 +383,9 @@ h1 {
 .portrait-wrap {
   position: relative;
   width: 100%;
-  max-width: 19rem;
-  margin: 0 0.75rem 0 0;
+  max-width: 16rem;
+  /* Include the accent frame's lower edge in the section's visible bounds. */
+  margin: 0 0.75rem 0.75rem 0;
   justify-self: end;
 }
 
@@ -414,6 +416,7 @@ h1 {
 }
 
 .split-section {
+  --section-padding: clamp(0.5rem, calc(3.5vw - 1.5rem), 1.25rem);
   --split-gap: clamp(1.25rem, 2.5vw, 2rem);
   --thumbnail-width: clamp(5rem, 8.5vw, 7.5rem);
   display: grid;
@@ -424,17 +427,24 @@ h1 {
 .split-panel {
   display: grid;
   grid-template-columns: var(--thumbnail-width) minmax(0, 1fr);
-  gap: 1.25rem var(--split-gap);
+  grid-template-rows: auto 1fr;
+  gap: 1rem var(--split-gap);
   align-content: start;
   align-items: start;
   min-width: 0;
   padding-block: var(--section-padding);
-  padding-top: calc(var(--section-padding) - 1.25rem);
 }
 
 .split-panel > .section-heading,
 .split-panel > .section-content {
   grid-column: 1 / -1;
+}
+
+.split-panel > .section-content {
+  display: flex;
+  flex-direction: column;
+  align-self: stretch;
+  gap: 0.9rem;
 }
 
 .split-panel > .section-heading h2 {
@@ -443,7 +453,8 @@ h1 {
 }
 
 .split-panel .text-link {
-  margin-left: calc(var(--thumbnail-width) + var(--split-gap));
+  align-self: flex-end;
+  margin-top: auto;
 }
 
 .split-panel:first-child {
@@ -457,7 +468,7 @@ h1 {
 
 h2 {
   margin: 0;
-  font-size: clamp(1.875rem, 3.55vw, 2.9rem);
+  font-size: clamp(1.7rem, 3.1vw, 2.5rem);
   letter-spacing: -0.05em;
   line-height: 1;
 }
@@ -498,7 +509,7 @@ h3 {
   grid-template-columns: var(--thumbnail-width) minmax(0, 1fr);
   gap: var(--split-gap);
   align-items: start;
-  padding-block: 1rem;
+  padding-block: 0.8rem;
   border-bottom: 1px solid var(--line);
 }
 
@@ -620,7 +631,7 @@ h3 {
 .preview-list li > div > time,
 .preview-list .entry-date {
   display: block;
-  margin: 0 0 0.4rem;
+  margin: 0 0 0.3rem;
 }
 
 .preview-list p:not(.entry-date) {
@@ -634,7 +645,7 @@ h3 {
 
 .text-link {
   display: inline-block;
-  margin-top: 1.15rem;
+  margin-top: 0.9rem;
   color: var(--accent);
   font-weight: 700;
 }
@@ -642,7 +653,7 @@ h3 {
 .content-section {
   display: grid;
   grid-template-columns: minmax(10rem, 0.32fr) minmax(0, 1fr);
-  gap: clamp(2rem, 5.5vw, 5.5rem);
+  gap: clamp(1rem, 2vw, 2rem);
   padding-block: var(--section-padding);
   border-top: 1px solid var(--line);
 }
@@ -650,7 +661,6 @@ h3 {
 @media (min-width: 761px) {
   #talks {
     grid-template-columns: minmax(8rem, 0.22fr) minmax(0, 1fr);
-    column-gap: clamp(2rem, 4vw, 4rem);
   }
 }
 
@@ -673,12 +683,12 @@ h3 {
 
 .publication-list li {
   position: relative;
-  padding: 0 0 1.5rem 3.25rem;
+  padding: 0 0 1.1rem 2.75rem;
   counter-increment: publication;
 }
 
 .publication-list li + li {
-  padding-top: 1.5rem;
+  padding-top: 1.1rem;
   border-top: 1px solid var(--line);
 }
 
@@ -690,10 +700,11 @@ h3 {
   content: counter(publication, decimal-leading-zero);
   font-family: Georgia, "Times New Roman", serif;
   font-size: 1.15rem;
+  line-height: 1;
 }
 
 .publication-list li + li::before {
-  top: 1.5rem;
+  top: 1.1rem;
 }
 
 .publication-list.is-collapsed > li:nth-child(n + 6) {
@@ -705,8 +716,9 @@ h3 {
   padding-bottom: 0;
 }
 
-.publication-list > li:last-child .entry-links,
-.publication-list.is-collapsed > li:nth-child(5) .entry-links {
+.publication-list > li:last-child article > :last-child,
+.publication-list.is-collapsed > li:nth-child(5) article > :last-child {
+  min-height: 2rem;
   padding-right: 2.5rem;
 }
 
@@ -716,6 +728,10 @@ h3 {
 
 .entry-type {
   margin: 0 0 0.35rem;
+}
+
+.publication-links {
+  white-space: nowrap;
 }
 
 .authors,
@@ -740,7 +756,7 @@ h3 {
   text-transform: uppercase;
 }
 
-.entry-links a {
+.publication-links a {
   color: var(--accent);
 }
 
@@ -801,8 +817,8 @@ h3 {
 .event-list li {
   display: grid;
   grid-template-columns: 12rem minmax(0, 1fr);
-  gap: 1.25rem;
-  padding-block: 1.1rem;
+  gap: 1rem;
+  padding-block: 0.85rem;
   border-bottom: 1px solid var(--line);
 }
 
@@ -836,13 +852,13 @@ h3 {
 }
 
 .listing-page {
-  min-height: calc(100svh - 3.75rem);
-  padding-block: clamp(2.5rem, 5vw, 4.5rem);
+  min-height: calc(100svh - 3.25rem);
+  padding-block: clamp(2rem, 3.5vw, 3rem);
 }
 
 .back-link {
   display: inline-block;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
   color: var(--accent);
   font-size: 0.85rem;
   font-weight: 700;
@@ -851,8 +867,8 @@ h3 {
 .listing-intro {
   display: grid;
   grid-template-columns: minmax(11rem, 0.38fr) minmax(0, 1fr);
-  gap: clamp(2rem, 5vw, 5rem);
-  padding-bottom: clamp(2.5rem, 4vw, 3.5rem);
+  gap: clamp(1.5rem, 4vw, 4rem);
+  padding-bottom: var(--section-padding);
 }
 
 .listing-intro h1 {
@@ -876,7 +892,7 @@ h3 {
   grid-template-columns: var(--thumbnail-width) minmax(8rem, 0.27fr) minmax(0, 1fr);
   gap: clamp(1rem, 3.5vw, 3rem);
   align-items: start;
-  padding-block: 1.4rem;
+  padding-block: 1rem;
   border-bottom: 1px solid var(--line);
 }
 
@@ -908,7 +924,7 @@ h3 {
   align-items: center;
   justify-content: space-between;
   gap: 0.5rem 1.5rem;
-  min-height: 4rem;
+  min-height: 3.25rem;
   border-top: 1px solid var(--line);
   color: var(--muted);
   font-size: 0.78rem;
@@ -937,7 +953,7 @@ h3 {
   .header-inner {
     min-height: 0;
     justify-content: flex-start;
-    padding-block: 0.35rem;
+    padding-block: 0.2rem;
   }
 
   nav {
@@ -962,18 +978,22 @@ h3 {
   .hero {
     min-height: 0;
     grid-template-columns: 1fr;
-    gap: 2.25rem;
-    padding-block: 2.5rem 3.5rem;
+    gap: 1.5rem;
   }
 
   .portrait-wrap {
-    width: min(58vw, 14rem);
+    width: min(52vw, 12rem);
+    margin-bottom: 0;
     order: -1;
     justify-self: start;
   }
 
   h1 {
     font-size: clamp(2.5rem, 10.8vw, 3.2rem);
+  }
+
+  .name-heading {
+    font-size: clamp(2.25rem, 9.5vw, 2.85rem);
   }
 
   .split-section {
@@ -999,7 +1019,7 @@ h3 {
   .content-section,
   .listing-intro {
     grid-template-columns: 1fr;
-    gap: 1.75rem;
+    gap: 1.25rem;
   }
 
   .section-heading h2 {
