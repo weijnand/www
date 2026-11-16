@@ -898,9 +898,17 @@ h3 {
   color: var(--paper);
 }
 
+.event-list {
+  display: grid;
+  /* Share the width needed by the visible dates, recording links, and statuses. */
+  grid-template-columns: max-content minmax(0, 1fr);
+  column-gap: 1rem;
+}
+
 .event-list li {
   display: grid;
-  grid-template-columns: 12rem minmax(0, 1fr);
+  grid-column: 1 / -1;
+  grid-template-columns: subgrid;
   gap: 1rem;
   padding-block: var(--entry-divider-padding);
   border-bottom: 1px solid var(--line);
@@ -1122,8 +1130,12 @@ h3 {
     content: "";
   }
 
+  .event-list,
   .event-list li {
     grid-template-columns: 1fr;
+  }
+
+  .event-list li {
     gap: 0.45rem;
   }
 
@@ -1237,7 +1249,7 @@ h3 {
   }
 
   .event-list.is-collapsed > li:nth-child(n + 6) {
-    display: list-item;
+    display: grid;
   }
 
   body {
